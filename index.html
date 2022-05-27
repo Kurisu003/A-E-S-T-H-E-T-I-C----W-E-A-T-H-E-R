@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>W E A T H E R</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Send+Flowers&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./script.js"></script>
+</head>
+
+<body>
+
+    <div class="backgroundContainer">
+
+        <div class="menuContainer">
+            <input type="checkbox" id="burger-toggle">
+            <label for="burger-toggle" class="burger-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </label>
+
+            <div class="menu">
+                <div class="menu-inner">
+                    <ul class="menu-nav">
+                        <li class="menu-nav-item"><a class="menu-nav-link" onclick="test('Home')"><span>
+                            <div>Home</div>
+                        </span></a></li>
+                        <li class="menu-nav-item"><a class="menu-nav-link" onclick="test('Team')"><span>
+                            <div>Team</div>
+                        </span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="teamContainer" class="hidden">
+            <h1>Daniel Bosin</h1>
+        </div>
+
+        <div id="weatherContainer" >
+            <div id="weatherDescription"></div>
+
+            <div id="temp"></div>
+
+            <div class="bottomWrapper">
+                <div class="sunWrapper">
+                    <div id="sunrise"></div>
+                    <div id="sunset"></div>
+                </div>
+
+                <img id="icon" />
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

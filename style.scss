@@ -1,0 +1,344 @@
+* {
+    margin: 0px;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.2s, opacity 0.2s linear;
+  }
+
+
+@mixin sp-layout {
+    @media screen and (max-width: 750px) {
+        @content;
+    }
+}
+
+@mixin pc-layout {
+    @media screen and (min-width: 751px) {
+        @content;
+    }
+}
+
+.menu-nav{
+    display: flex;
+    flex-direction: column
+}
+
+.menu-nav-link{
+    cursor: pointer;
+}
+
+#burger-toggle {
+    position: absolute;
+    appearance: none;
+    opacity: 0;
+
+    &:checked {
+        & ~ #weatherContainer{
+            display: flex;
+        }
+
+        & ~ .menu {
+            opacity: 1;
+            visibility: visible;
+
+            .menu-nav-link span div,
+            .title p {
+                transform: translateY(0);
+                transition: 1.2s 0.1s cubic-bezier(0.35, 0, 0.07, 1);
+            }
+        }
+
+        & ~ .burger-menu {
+            .line {
+                &::after {
+                    transform: translateX(0);
+                }
+
+                &:nth-child(1) {
+                    transform: translateY(calc(var(--burger-menu-radius) / 5))
+                        rotate(45deg);
+                }
+
+                &:nth-child(2) {
+                    transform: scaleX(0);
+                }
+
+                &:nth-child(3) {
+                    transform: translateY(calc(var(--burger-menu-radius) / -5))
+                        rotate(-45deg);
+                }
+            }
+        }
+    }
+}
+
+.burger-menu {
+    --burger-menu-radius: 5vw;
+
+    position: fixed;
+    top: 5vh;
+    left: 5vw;
+    z-index: 100;
+    display: block;
+    width: var(--burger-menu-radius);
+    height: var(--burger-menu-radius);
+    outline: none;
+    cursor: pointer;
+
+    .line {
+        position: absolute;
+        left: 1vw;
+        width: 3vw;
+        height: 0.5vw;
+        background: hsla(210, 29%, 24%, 0.3);
+        border-radius: 2vw;
+        overflow: hidden;
+        transition: 0.5s;
+
+        &:nth-child(1) {
+            top: 2vw;
+        }
+
+        &:nth-child(2) {
+            top: 3vw;
+        }
+
+        &:nth-child(3) {
+            top: 4vw;
+        }
+
+        &::after {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--primary-color-darker);
+            transform: translateX(-100%);
+            transition: 0.25s;
+        }
+
+        @for $i from 2 through 3 {
+            &:nth-child(#{$i})::after {
+                transition-delay: 0.1s * ($i - 1);
+            }
+        }
+    }
+
+    &:hover {
+        .line::after {
+            transform: translateX(0);
+        }
+    }
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #4c5867;
+    opacity: 0;
+    overflow-x: hidden;
+    visibility: hidden;
+    transition: 0.3s;
+
+    @include sp-layout {
+        display: block;
+    }
+
+    &-nav {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        list-style-type: none;
+
+        @include sp-layout {
+            flex-direction: column;
+        }
+
+        &-item {
+            flex: 1;
+        }
+
+        &-link {
+            position: relative;
+            display: inline-flex;
+            font-size: 5vw;
+            color: white;
+            text-decoration: none;
+            font-family: "Send Flowers", cursive;
+
+            span {
+                overflow: hidden;
+
+                div {
+                    transform: translateY(102%);
+                }
+            }
+
+            &::after {
+                position: absolute;
+                content: "";
+                top: 100%;
+                left: 0;
+                width: 100%;
+                height: 3px;
+                background: var(--primary-color);
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.5s;
+            }
+
+            &:hover::after {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+        }
+    }
+
+    .title {
+        font-size: 2vw;
+        color: white;
+        overflow: hidden;
+
+        p {
+            font-size: 2vw;
+            letter-spacing: 1vw;
+            text-transform: uppercase;
+            transform: translateY(102%);
+        }
+    }
+}
+
+.backgroundContainer {
+    width: 100vw;
+    height: 100vh;
+    background-color: green;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: start;
+    justify-content: right;
+    background-position: center;
+}
+
+#weatherContainer {
+    display: flex;
+    padding-left: 1vw;
+    justify-content: center;
+    flex-direction: column;
+
+    margin-top: 10vh;
+    margin-right: 5vw;
+    width: 20vw;
+    height: 25vh;
+    background-color: rgba(0, 0, 0, 0.226);
+    backdrop-filter: blur(0.5vw);
+    border-radius: 2vw;
+
+    font-family: "Send Flowers", cursive;
+    color: white;
+    font-size: 2vw;
+}
+
+.sunWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottomWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#icon {
+    width: 5vw;
+    margin-right: 1vw;
+}
+
+// if window is less than 600px
+@media screen and (max-width: 1000px) {
+    #weatherContainer {
+        display: flex;
+        padding-left: 1vw;
+        justify-content: center;
+        flex-direction: column;
+
+        margin-top: 10vh;
+        padding-top: 2vh;
+        margin-right: 5vw;
+        width: 30vw;
+        height: 20vw;
+        background-color: rgba(0, 0, 0, 0.226);
+        backdrop-filter: blur(0.5vw);
+        border-radius: 2vw;
+
+        font-family: "Send Flowers", cursive;
+        color: white;
+        font-size: 2vw;
+    }
+    .bottomWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    #icon {
+        width: 10vw;
+        margin-right: 1vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #weatherContainer {
+        display: flex;
+        padding-left: 1vw;
+        justify-content: center;
+        flex-direction: column;
+
+        margin-top: 10vh;
+        padding-top: 2vh;
+        margin-right: 5vw;
+        width: 30vw;
+        height: 25vw;
+        background-color: rgba(0, 0, 0, 0.226);
+        backdrop-filter: blur(0.5vw);
+        border-radius: 2vw;
+
+        font-family: "Send Flowers", cursive;
+        color: white;
+        font-size: 3vw;
+    }
+}
+
+#teamContainer { 
+    display: flex;
+    padding-left: 1vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: 10vh;
+    margin-right: 5vw;
+    width: 25vw;
+    height: 10vh;
+    background-color: rgba(0, 0, 0, 0.226);
+    backdrop-filter: blur(0.5vw);
+    border-radius: 2vw;
+
+    font-family: "Send Flowers", cursive;
+    color: white;
+    font-size: 2vw;
+}
