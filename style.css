@@ -31,12 +31,6 @@
   opacity: 0;
 }
 
-#burger-toggle:checked ~ #weatherContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 #burger-toggle:checked ~ .menu {
   opacity: 1;
   visibility: visible;
@@ -56,8 +50,8 @@
 }
 
 #burger-toggle:checked ~ .burger-menu .line:nth-child(1) {
-  -webkit-transform: translateY(calc(var(--burger-menu-radius) / 5)) rotate(45deg);
-          transform: translateY(calc(var(--burger-menu-radius) / 5)) rotate(45deg);
+  -webkit-transform: translateY(1.9vh) rotate(45deg);
+          transform: translateY(1.9vh) rotate(45deg);
 }
 
 #burger-toggle:checked ~ .burger-menu .line:nth-child(2) {
@@ -66,8 +60,8 @@
 }
 
 #burger-toggle:checked ~ .burger-menu .line:nth-child(3) {
-  -webkit-transform: translateY(calc(var(--burger-menu-radius) / -5)) rotate(-45deg);
-          transform: translateY(calc(var(--burger-menu-radius) / -5)) rotate(-45deg);
+  -webkit-transform: translateY(-1.9vh) rotate(-45deg);
+          transform: translateY(-1.9vh) rotate(-45deg);
 }
 
 .burger-menu {
@@ -86,25 +80,26 @@
 .burger-menu .line {
   position: absolute;
   left: 1vw;
-  width: 3vw;
-  height: 0.5vw;
-  background: rgba(43, 61, 79, 0.3);
-  border-radius: 2vw;
+  width: 4vh;
+  height: 1vh;
+  background: #6697cc;
+  border: solid 0.2vh white;
+  border-radius: 2vh;
   overflow: hidden;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .burger-menu .line:nth-child(1) {
-  top: 2vw;
+  top: 2vh;
 }
 
 .burger-menu .line:nth-child(2) {
-  top: 3vw;
+  top: 4vh;
 }
 
 .burger-menu .line:nth-child(3) {
-  top: 4vw;
+  top: 6vh;
 }
 
 .burger-menu .line::after {

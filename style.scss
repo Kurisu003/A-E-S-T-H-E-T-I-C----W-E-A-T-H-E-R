@@ -6,8 +6,7 @@
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s 0.2s, opacity 0.2s linear;
-  }
-
+}
 
 @mixin sp-layout {
     @media screen and (max-width: 750px) {
@@ -36,10 +35,6 @@
     opacity: 0;
 
     &:checked {
-        & ~ #weatherContainer{
-            display: flex;
-        }
-
         & ~ .menu {
             opacity: 1;
             visibility: visible;
@@ -58,7 +53,7 @@
                 }
 
                 &:nth-child(1) {
-                    transform: translateY(calc(var(--burger-menu-radius) / 5))
+                    transform: translateY(1.9vh)
                         rotate(45deg);
                 }
 
@@ -67,7 +62,7 @@
                 }
 
                 &:nth-child(3) {
-                    transform: translateY(calc(var(--burger-menu-radius) / -5))
+                    transform: translateY(-1.9vh)
                         rotate(-45deg);
                 }
             }
@@ -91,23 +86,24 @@
     .line {
         position: absolute;
         left: 1vw;
-        width: 3vw;
-        height: 0.5vw;
-        background: hsla(210, 29%, 24%, 0.3);
-        border-radius: 2vw;
+        width: 4vh;
+        height: 1vh;
+        background: hsl(211, 50%, 60%);
+        border: solid 0.2vh white;
+        border-radius: 2vh;
         overflow: hidden;
         transition: 0.5s;
 
         &:nth-child(1) {
-            top: 2vw;
+            top: 2vh;
         }
 
         &:nth-child(2) {
-            top: 3vw;
+            top: 4vh;
         }
 
         &:nth-child(3) {
-            top: 4vw;
+            top: 6vh;
         }
 
         &::after {
