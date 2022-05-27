@@ -62,15 +62,19 @@ function test(selection){
     document.getElementById("burger-toggle").checked=false;
     // switch case selection
     switch(selection){
-        case "Home": unhideWeather()
-        case "Gallery": unhideGallery()
-        case "Team" : unhideTeam()
+        case "Home": unhideWeather(); break;
+        case "Team" : unhideTeam(); break;
     }
 }
 
 window.onload = function() {
     document.getElementById("burger-toggle").addEventListener("click", function(){
-        hideAll();
+        if(document.getElementById("burger-toggle").checked)
+            hideAll();
+        else{
+            hideAll();
+            unhideWeather();
+        }
     })
 }
 
